@@ -15,21 +15,36 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.cognizant.entity.UserDetails;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 //@Table(name="Home_Loan_Details")
 public class HomeLoanVO {
 
 	
+	
 	//@GeneratedValue(strategy=GenerationType.AUTO)
+	
+	
 	String homeLoanId;
 	
 	// @Column(name="LOAN_AMOUNT")
+	
+	
+	@NotNull
 	long loanAmount;
 	
 	// @Column(name="LOAN_DURATION")
+	
+	
+	
 	 int loanDuration;
 	 
 	 //long accountNumber;
@@ -42,12 +57,25 @@ public class HomeLoanVO {
 		this.accountNumber = accountNumber;
 	}*/
 
-
-	String loanApplyDate;
+	 @NotNull
+	Date loanApplyDate;
+	
+	 @NotNull
 	 long annualIncome;
+	 
+	 @NotNull
+	 @Size(max=30)
 	 String companyName;
+	 
+	 @NotNull
+	 @Size(max=30)
 	 String designation;
+	 
+	 
+	 @NotNull
 	 int totalExperience;
+	 
+	 @NotNull
 	 int currentExperience;
 	 
 	 @Id
@@ -61,7 +89,7 @@ public class HomeLoanVO {
 		this.loanAccountNumber = loanAccountNumber;
 	}
 
-
+@JsonBackReference
 	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	 @JoinColumn(name = "ACCOUNT_NUMBER")
 		private UserDetails userDtails;
@@ -95,10 +123,10 @@ public class HomeLoanVO {
 		this.loanDuration = loanDuration;
 	}
 	
-	public String getLoanApplyDate() {
+	public Date getLoanApplyDate() {
 		return loanApplyDate;
 	}
-	public void setLoanApplyDate(String loanApplyDate) {
+	public void setLoanApplyDate(Date loanApplyDate) {
 		this.loanApplyDate = loanApplyDate;
 	}
 	public long getAnnualIncome() {
@@ -138,7 +166,7 @@ public class HomeLoanVO {
 				+ annualIncome + ", companyName=" + companyName + ", designation=" + designation + ", totalExperience="
 				+ totalExperience + ", currentExperience=" + currentExperience + "]";
 	}
-	public HomeLoanVO( long loanAmount, int loanDuration, String loanApplyDate,
+	public HomeLoanVO( long loanAmount, int loanDuration, Date loanApplyDate,
 			long annualIncome, String companyName, String designation, int totalExperience, int currentExperience,UserDetails userDetails) {
 		super();
 	
@@ -153,7 +181,7 @@ public class HomeLoanVO {
 		this.userDtails=userDetails;
 	}
 	
-	public HomeLoanVO( long loanAmount, int loanDuration, String loanApplyDate,
+	public HomeLoanVO( long loanAmount, int loanDuration, Date loanApplyDate,
 			long annualIncome, String companyName, String designation, int totalExperience, int currentExperience) {
 		super();
 	

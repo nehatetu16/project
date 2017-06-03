@@ -35,12 +35,13 @@ public class TestApplyHomeLoan {
 	
 		@Before
 	 	public void setup(){
+		Date d=new Date();
 		
 			userDetails=new UserDetails(1234567890987655l,"Salary", "neha", 5000654);
 			
-			HomeLoanVO h1=new HomeLoanVO(54534534,4,"23/03/2013",265464,"cts","pat",4,3,userDetails);
+			HomeLoanVO h1=new HomeLoanVO(54534534,4,d,265464,"cts","pat",4,3,userDetails);
 		
-			HomeLoanVO h2=new HomeLoanVO(5345434,3,"24/03/2014",87232,"tcs","pa",4,3,userDetails);
+			HomeLoanVO h2=new HomeLoanVO(5345434,3,d,87232,"tcs","pa",4,3,userDetails);
 			
 			homeLoan=new ArrayList<HomeLoanVO>();
 			
@@ -62,7 +63,7 @@ public class TestApplyHomeLoan {
 					
 	 	}
 
-	//	@Test
+		@Test
 	 	public void testInsertHomeLoanDetails() {
 	 		
 	 			try {
@@ -79,12 +80,12 @@ public class TestApplyHomeLoan {
 	 			
 	 		
 	 	}
-@Test
+//@Test
 		public void testUpdateLoanDetails()
 		{
 	long acc=1234567890987655l;
-	
-	HomeLoanVO h3=new HomeLoanVO(5345434,3,"24/03/2014",87232,"tcs","pa",4,3);
+	Date d=new Date();
+	HomeLoanVO h3=new HomeLoanVO(5345434,3,d,87232,"tech-m","pa",4,3);
 	
 	h3.setLoanAccountNumber(service.generateLoanAccNumber());
 	

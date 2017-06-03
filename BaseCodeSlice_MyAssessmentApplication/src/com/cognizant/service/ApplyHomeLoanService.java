@@ -12,6 +12,8 @@ import com.cognizant.dao.ApplyHomeLoanDAO;
 import com.cognizant.entity.HomeLoanVO;
 import com.cognizant.entity.UserDetails;
 
+import sun.print.resources.serviceui;
+
 @Component
 public class ApplyHomeLoanService {
 
@@ -19,6 +21,7 @@ public class ApplyHomeLoanService {
 	private ApplyHomeLoanDAO homeLoanDao;
 
 	public void insertHomeLoanDetails(UserDetails userDetails) throws Exception {
+
 
 		homeLoanDao.insertHomeLoanDetails(userDetails);
 
@@ -28,6 +31,15 @@ public class ApplyHomeLoanService {
 	@Transactional
 	public void updateLoanDetails(long acc, HomeLoanVO h2) {
 		
+		ApplyHomeLoanService ser=new ApplyHomeLoanService();
+	
+		String id=ser.generateHomeLoanId(acc);
+		
+			System.out.println(id);
+			
+			h2.setHomeLoanId(id);
+	 		
+	
 		UserDetails userDetails=homeLoanDao.updateLoanDetails(acc);
 		
 		h2.setUserDtails(userDetails);
